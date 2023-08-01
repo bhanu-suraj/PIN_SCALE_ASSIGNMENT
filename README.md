@@ -1,432 +1,254 @@
-In this project, let's build a **Personal Transaction Management App.** by applying the concepts we have learned till now.
-
-### Refer to videos below:
-
-<div style="text-align: center;">
-  <video style="max-width:80%;box-shadow:0 2.8px 2.2px rgba(0, 0, 0, 0.12);outline:none;" loop="true" autoplay="autoplay" controls="controls" muted>
-    <source src="https://assets.ccbp.in/frontend/content/react-js/jobby-app-success-output-v0.mp4" type="video/mp4">
-  </video>
-</div>
-<br/>
-
-**Failure View** <br/>
-
-<div style="text-align: center;">
-  <video style="max-width:80%;box-shadow:0 2.8px 2.2px rgba(0, 0, 0, 0.12);outline:none;" loop="true" autoplay="autoplay" controls="controls" muted>
-    <source src="https://assets.ccbp.in/frontend/content/react-js/jobby-app-failure-output-v1.mp4" type="video/mp4">
-  </video>
-</div>
-<br/>
-
-### Design Files
-
-<details>
-<summary>Login Route</summary>
-
-- [Extra Small (Size < 576px) and Small (Size >= 576px) - Login](https://assets.ccbp.in/frontend/content/react-js/jobby-app-login-sm-outputs.png)
-- [Medium (Size >= 768px), Large (Size >= 992px) and Extra Large (Size >= 1200px) - Login](https://assets.ccbp.in/frontend/content/react-js/jobby-app-login-lg-output.png)
-- [Medium (Size >= 768px), Large (Size >= 992px) and Extra Large (Size >= 1200px) - Login Failure](https://assets.ccbp.in/frontend/content/react-js/jobby-app-login-failure-lg-output.png)
-</details>
-
-<details>
-<summary>Home Route</summary>
-
-- [Extra Small (Size < 576px) and Small (Size >= 576px) - Home](https://assets.ccbp.in/frontend/content/react-js/jobby-app-home-sm-output.png)
-- [Medium (Size >= 768px), Large (Size >= 992px) and Extra Large (Size >= 1200px) - Home](https://assets.ccbp.in/frontend/content/react-js/jobby-app-home-lg-output.png)
-</details>
-
-<details>
-<summary>Jobs Route</summary>
-
-- [Extra Small (Size < 576px) and Small (Size >= 576px) - Jobs](https://assets.ccbp.in/frontend/content/react-js/jobby-app-jobs-sm-outputs.png)
-- [Medium (Size >= 768px), Large (Size >= 992px) and Extra Large (Size >= 1200px) - Jobs Success](https://assets.ccbp.in/frontend/content/react-js/jobby-app-jobs-success-lg-output-v0.png)
-- [Medium (Size >= 768px), Large (Size >= 992px) and Extra Large (Size >= 1200px) - No Jobs](https://assets.ccbp.in/frontend/content/react-js/jobby-app-no-jobs-lg-output-v0.png)
-- [Medium (Size >= 768px), Large (Size >= 992px) and Extra Large (Size >= 1200px) - Profile Failure](https://assets.ccbp.in/frontend/content/react-js/jooby-app-profile-failure-lg-output-v0.png)
-- [Medium (Size >= 768px), Large (Size >= 992px) and Extra Large (Size >= 1200px) - Jobs Failure](https://assets.ccbp.in/frontend/content/react-js/jobby-app-jobs-failure-lg-output-v0.png)
-</details>
-
-<details>
-<summary>Job Item Details Route</summary>
-
-- [Extra Small (Size < 576px) and Small (Size >= 576px) - Job Details Success](https://assets.ccbp.in/frontend/content/react-js/jobby-app-job-details-success-sm-output-v0.png)
-- [Extra Small (Size < 576px) and Small (Size >= 576px) - Job Details Failure](https://assets.ccbp.in/frontend/content/react-js/jobby-app-job-details-failure-sm-output.png)
-- [Medium (Size >= 768px), Large (Size >= 992px) and Extra Large (Size >= 1200px) - Job Details Success](https://assets.ccbp.in/frontend/content/react-js/jobby-app-job-details-success-lg-output-v0.png)
-- [Medium (Size >= 768px), Large (Size >= 992px) and Extra Large (Size >= 1200px) - Job Details Failure](https://assets.ccbp.in/frontend/content/react-js/jobby-app-job-details-failure-lg-output.png)
-</details>
-
-<details>
-<summary>Not Found Route</summary>
-
-- [Extra Small (Size < 576px) and Small (Size >= 576px) - Not Found](https://assets.ccbp.in/frontend/content/react-js/jobby-app-not-found-sm-output-v0.png)
-- [Medium (Size >= 768px), Large (Size >= 992px) and Extra Large (Size >= 1200px) - Not Found](https://assets.ccbp.in/frontend/content/react-js/jobby-app-not-found-lg-output-v0.png)
-</details>
-
-### Set Up Instructions
-
-<details>
-<summary>Click to view</summary>
-
-- Download dependencies by running `npm install`
-- Start up the app using `npm start`
-</details>
-
-### Completion Instructions
-
-<details>
-<summary>Functionality to be added</summary>
-<br/>
-
-The app must have the following functionalities
-
-- **Login Route**
-
-  - When invalid credentials are provided and the **Login** button is clicked, then the error message received from the response should be displayed
-  - When valid credentials are provided and the **Login** button is clicked, then the page should be navigated to the Home Route
-  - When an _unauthenticated_ user, tries to access the Home, Jobs and Job Item Details Route, then the page should be navigated to Login Route
-  - When an _authenticated_ user, tries to access the Home, Jobs and Job Item Details Route, then the page should be navigated to the respective route
-  - When an _authenticated_ user, tries to access the Login Route, then the page should be navigated to the Home Route
-
-- **Home Route**
-
-  - When an _authenticated_ user opens the Home Route
-    - Clicks on the **Find Jobs** button, then the page should be navigated to the Jobs Route
-
-- **Jobs Route**
-
-  - When an _authenticated_ user opens the Jobs Route
-
-    - An HTTP GET request should be made to **Profile API URL**
-      - **_loader_** should be displayed while fetching the data
-      - After the data is fetched successfully, the response received should be displayed
-      - If the HTTP GET request made is unsuccessful, then the [Failure View](https://assets.ccbp.in/frontend/content/react-js/jobby-app-profile-failure-lg-output.png) should be displayed
-        - When the **Retry** button is clicked, an HTTP GET request should be made to **Profile API URL**
-    - An HTTP GET request should be made to **Jobs API URL** with `employment_type`, `minimum_package`, and `search` as query parameters with empty strings as initial values
-      - **_loader_** should be displayed while fetching the data
-      - After the data is fetched successfully, display the list of jobs received from the response
-      - If the HTTP GET request made is unsuccessful, then the [Failure View](https://assets.ccbp.in/frontend/content/react-js/jobby-app-jobs-failure-lg-output.png) should be displayed
-        - When the **Retry** button is clicked, an HTTP GET request should be made to **Jobs API URL**
-    - When a value is provided in the search input and search icon button is clicked
-      - Make an HTTP GET request to the **Jobs API URL** with `jwt_token` in the Cookies and query parameter `search` with value as the text provided in the search input
-      - **_loader_** should be displayed while fetching the data
-      - After the data is fetched successfully, display the list of jobs received from the response
-    - When **Employment Types** options are selected
-      - Make an HTTP GET request to the **Jobs API URL** with `jwt_token` in the Cookies and query parameter `employment_type` with value as a list of selected employment type id's as a single string separated by `,`
-      - **_loader_** should be displayed while fetching the data
-      - After the data is fetched successfully, display the list of jobs received from the response
-    - When **Salary Range** is selected
-      - Make an HTTP GET request to the **Jobs API URL** with `jwt_token` in the Cookies and query parameter `minimum_package` with value as the id of the selected salary range
-      - **_loader_** should be displayed while fetching the data
-      - After the data is fetched successfully, display the list of jobs received from the response
-    - When the HTTP GET request made to the **Jobs API URL** returns an empty list for jobs then [No Jobs View](https://assets.ccbp.in/frontend/content/react-js/jobby-app-no-jobs-lg-output.png) should be displayed
-
-  - When multiple filters are applied, then the HTTP GET request should be made with all the filters that are applied
-  - For example: When the **Full Time** and **Part Time** employment types are selected, salary range **10 LPA and above** is selected and search input field is empty, then the **Jobs API URL** will be as follows
-
-    ```js
-    const apiUrl = 'https://apis.ccbp.in/jobs?employment_type=FULLTIME,PARTTIME&minimum_package=1000000&search='
-    ```
-
-  - When a **job** is clicked, then the page should be navigated to the Job Item Details Route
-
-- **Job Item Details Route**
-
-  - When an _authenticated_ user opens the Job Item Details Route
-    - An HTTP GET request should be made to **Job Details API URL** with `jwt_token` in the Cookies and job `id` as path parameter
-      - **_loader_** should be displayed while fetching the data
-      - After the data is fetched successfully, the response received should be displayed
-      - The list of similar jobs should be displayed
-      - If the HTTP GET request made is unsuccessful, then the [Failure View](https://assets.ccbp.in/frontend/content/react-js/jobby-app-job-details-failure-lg-output.png) should be displayed
-        - When the **Retry** button is clicked, an HTTP GET request should be made to **Job Details API URL**
-  - When the **Visit** button is clicked, then the corresponding company website URL should be opened in a new tab
-
-- **Not Found Route**
-
-  - When a random path is provided as the URL path, then the page should be navigated to the Not Found Route
-
-- **Header**
-
-  - When the **website logo** image is clicked, then the page should be navigated to the Home Route
-  - When the **Home** link is clicked, then the page should be navigated to the Home Route
-  - When the **Jobs** link is clicked, then the page should be navigated to the Jobs Route
-  - When the **Logout** button is clicked, then the page should be navigated to the Login Route
-
-- The App is provided with `employmentTypesList`. It consists of a list of employment type objects with the following properties in each employment type object
-
-  |       Key        | Data Type |
-  | :--------------: | :-------: |
-  | employmentTypeId |  String   |
-  |      label       |  String   |
-
-- The App is provided with `salaryRangesList`. It consists of a list of salary range objects with the following properties in each salary range object
-
-  |      Key      | Data Type |
-  | :-----------: | :-------: |
-  | salaryRangeId |  String   |
-  |     label     |  String   |
-
-</details>
-
-<details>
-
-<summary>API Requests & Responses</summary>
-
-<br/>
-
-**Login API**
-
-#### API: `https://apis.ccbp.in/login`
-
-#### Method: `POST`
-
-#### Request:
-
-```json
-{
-  "username": "rahul",
-  "password": "rahul@2021"
-}
-```
-
-#### Description:
-
-Returns a response based on the credentials provided
-
-#### Sample Success Response
-
-```json
-{
-  "jwt_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJhaHVsIiwicm9sZSI6IlBSSU1FX1VTRVIiLCJpYXQiOjE2MTk2Mjg2MTN9. nZDlFsnSWArLKKeF0QbmdVfLgzUbx1BGJsqa2kc_21Y"
-}
-```
-
-#### Sample Failure Response
-
-```json
-{
-  "status_code": 404,
-  "error_msg": "Username is not found"
-}
-```
-
-**Profile API**
-
-#### API: `https://apis.ccbp.in/profile`
-
-#### Method: `GET`
-
-#### Description:
-
-Returns a response containing the profile details
-
-#### Sample Response
-
-```json
-{
-  "profile_details": {
-    "name": "Rahul Attuluri",
-    "profile_image_url": "https://assets.ccbp.in/frontend/react-js/male-avatar-img.png",
-    "short_bio": "Lead Software Developer and AI-ML expert"
-  }
-}
-```
-
-**Jobs API**
-
-#### API: `https://apis.ccbp.in/jobs`
-
-#### Example: `https://apis.ccbp.in/jobs?employment_type=FULLTIME,PARTTIME&minimum_package=1000000&search=`
-
-#### Method: `GET`
-
-#### Description:
-
-Returns a response containing the list of all jobs
-
-#### Sample Response
-
-```json
-{
-  "jobs": [
-    {
-      "company_logo_url": "https://assets.ccbp.in/frontend/react-js/jobby-app/facebook-img.png",
-      "employment_type": "Full Time",
-      "id": "d6019453-f864-4a2f-8230-6a9642a59466",
-      "job_description": "We’re in search of a Back-End Software Engineer that specializes in server-side components. In this role, you’ll primarily work in NodeJs, SQL Lite, Python, AWS and GO and will bring a depth of knowledge on basic algorithms and data structures. As a Back-End Engineer, you might be architecting new features for our customers.",
-      "location": "Bangalore",
-      "package_per_annum": "21 LPA",
-      "rating": 4,
-      "title": "Backend Engineer"
-    }
-    ...
-  ],
-  "total":25,
-}
-```
-
-**Job Details API**
-
-#### API: `https://apis.ccbp.in/jobs/:id`
-
-#### Example: `https://apis.ccbp.in/jobs/bb95e51b-b1b2-4d97-bee4-1d5ec2b96751`
-
-#### Method: `GET`
-
-#### Description:
-
-Returns a response containing the job details
-
-#### Sample Response
-
-```json
-{
-  "job_details": {
-    "company_logo_url": "https://assets.ccbp.in/frontend/react-js/jobby-app/netflix-img.png",
-    "company_website_url": "https://about.netflix.com/en",
-    "employment_type": "Internship",
-    "id": "bb95e51b-b1b2-4d97-bee4-1d5ec2b96751",
-    "job_description": "We are looking for a DevOps Engineer with a minimum of 5 years of industry experience, preferably working in the financial IT community. The position in the team is focused on delivering exceptional services to both BU and Dev",
-    "skills": [
-      {
-        "image_url": "https://assets.ccbp.in/frontend/react-js/jobby-app/docker-img.png",
-        "name": "Docker"
-      },
-      ...
-    ],
-    "life_at_company": {
-      "description": "Our core philosophy is people over process. Our culture has been instrumental to our success. It has helped us attract and retain stunning colleagues, making work here more satisfying. Entertainment, like friendship, is a fundamental human need, and it changes how we feel and gives us common ground. We want to entertain the world.",
-      "image_url": "https://assets.ccbp.in/frontend/react-js/jobby-app/life-netflix-img.png"
-    },
-    "location":"Delhi",
-    "package_per_annum":"10 LPA",
-    "rating":4
-  },
-  "similar_jobs": [
-    {
-      "company_logo_url": "https://assets.ccbp.in/frontend/react-js/jobby-app/netflix-img.png",
-      "employment_type": "Freelance",
-      "id": "2b40029d-e5a5-48cc-84a6-b6e12d25625d",
-      "job_description": "The Experimentation Platform team builds internal tools with a big impact across the company. We are looking to add a UI engineer to our team to continue to improve our experiment analysis workflow and tools. Ideal candidates will be excited by direct contact with our users, fast feedback, and quick iteration.",
-      "location": "Delhi",
-      "rating": 4,
-      "title": "Frontend Engineer"
-    },
-    ...
-  ]
-}
-```
-
-</details>
-
-### Quick Tips
-
-<details>
-<summary>Click to view</summary>
-<br>
-
-- To convert a list of items as a comma-separated string we can use the array method `join()`
-
-</details>
-
-### Important Note
-
-<details>
-<summary>Click to view</summary>
-
-<br/>
-
-**The following instructions are required for the tests to pass**
-
-- Render `Home` Route component when the path in URL matches `/`
-- Render `Login` Route component when the path in URL matches `/login`
-- Render `Jobs` Route component when the path in URL matches `/jobs`
-- Render `Job Item Details` Route component when the path in URL matches `/jobs/:id`
-- Render `Not Found` Route component when the path in URL matches `/not-found`
-- No need to use the `BrowserRouter` in `App.js` as we have already included in `index.js`
-
-- User credentials
-
-  ```text
-   username: rahul
-   password: rahul@2021
-
-  ```
-
-- Wrap the `Loader` component with an HTML container element and add the `data-testid` attribute value as **loader** to it
-
-  ```jsx
-  <div className="loader-container" data-testid="loader">
-    <Loader type="ThreeDots" color="#ffffff" height="50" width="50" />
-  </div>
-  ```
-
-- **Jobs Route**
-
-  - The HTML button element with search icon should have the `data-testid` attribute value as **searchButton** to it
-
-  ```jsx
-  <button type="button" data-testid="searchButton">
-    <BsSearch className="search-icon" />
-  </button>
-  ```
-
-  - The profile image should have the alt as **profile**
-  - The company logo images in Jobs Route should have the alt as **company logo**
-
-- **Job Details Route**
-  - The company logo image should have the alt as **job details company logo**
-  - The life at company image should have the alt as **life at company**
-  - The skill images should have the alt as the value of the key `name` from each object in the **skills** list received from the job details response
-  - The company logo image in similar job item should have the alt as **similar job company logo**
-  </details>
-
-### Resources
-
-<details>
-<summary>Image URLs</summary>
-
-- [https://assets.ccbp.in/frontend/react-js/home-sm-bg.png](https://assets.ccbp.in/frontend/react-js/home-sm-bg.png)
-- [https://assets.ccbp.in/frontend/react-js/home-lg-bg.png](https://assets.ccbp.in/frontend/react-js/home-lg-bg.png)
-- [https://assets.ccbp.in/frontend/react-js/profile-bg.png](https://assets.ccbp.in/frontend/react-js/profile-bg.png)
-- [https://assets.ccbp.in/frontend/react-js/logo-img.png](https://assets.ccbp.in/frontend/react-js/logo-img.png) alt should be **website logo**
-- [https://assets.ccbp.in/frontend/react-js/failure-img.png](https://assets.ccbp.in/frontend/react-js/failure-img.png) alt should be **failure view**
-- [https://assets.ccbp.in/frontend/react-js/no-jobs-img.png](https://assets.ccbp.in/frontend/react-js/no-jobs-img.png) alt should be **no jobs**
-- [https://assets.ccbp.in/frontend/react-js/jobby-app-not-found-img.png](https://assets.ccbp.in/frontend/react-js/jobby-app-not-found-img.png) alt should be **not found**
-
-</details>
-
-<details>
-<summary>Colors</summary>
-
-<br/>
-<div style="background-color: #64748b; width: 150px; padding: 10px; color: white">Hex: #64748b</div>
-<div style="background-color: #4f46e5; width: 150px; padding: 10px; color: white">Hex: #4f46e5</div>
-<div style="background-color: #f8fafc; width: 150px; padding: 10px; color: black">Hex: #f8fafc</div>
-<div style="background-color: #272727; width: 150px; padding: 10px; color: white">Hex: #272727</div>
-<div style="background-color: #ffffff; width: 150px; padding: 10px; color: black">Hex: #ffffff</div>
-<div style="background-color: #b6c5ff; width: 150px; padding: 10px; color: black">Hex: #b6c5ff</div>
-<div style="background-color: #6366f1; width: 150px; padding: 10px; color: white">Hex: #6366f1</div>
-<div style="background-color: #2c364c; width: 150px; padding: 10px; color: white">Hex: #2c364c</div>
-<div style="background-color: #000000; width: 150px; padding: 10px; color: white">Hex: #000000</div>
-<div style="background-color: #f1f5f9; width: 150px; padding: 10px; color: black">Hex: #f1f5f9</div>
-<div style="background-color: #fbbf24; width: 150px; padding: 10px; color: white">Hex: #fbbf24</div>
-<div style="background-color: #202020; width: 150px; padding: 10px; color: white">Hex: #202020</div>
-<div style="background-color: #cbd5e1; width: 150px; padding: 10px; color: black">Hex: #cbd5e1</div>
-<div style="background-color: #7e858e; width: 150px; padding: 10px; color: black">Hex: #7e858e</div>
-<div style="background-color: #121212; width: 150px; padding: 10px; color: white">Hex: #121212</div>
-<div style="background-color: #475569; width: 150px; padding: 10px; color: white">Hex: #475569</div>
-<div style="background-color: #ff0b37; width: 150px; padding: 10px; color: white">Hex: #ff0b37</div>
-<br/>
-</details>
-
-<details>
-<summary>Font-families</summary>
-
-- Roboto
-</details>
-
-> ### _Things to Keep in Mind_
->
-> - All components you implement should go in the `src/components` directory.
-> - Don't change the component folder names as those are the files being imported into the tests.
-> - **Do not remove the pre-filled code**
-> - Want to quickly review some of the concepts you’ve been learning? Take a look at the Cheat Sheets.
+# Assignment
+
+### Common Instructions:
+
+1. Add Loading and Failure views for all the APIs.
+2.  Develop the UI exactly as in the Design screens.
+3. Do client-side validations for all the input fields, forms, and request and response objects for API calls.
+4. The UI should be responsive. The screens are not given, and the design is your call. You can achieve responsiveness using media queries, flex properties, etc.
+5. Deploy your website in a public URL using Github Pages and share it in the README.md file of the project. If you don’t know how to deploy, you can follow the below video
+**How To Deploy A React App To Github Pages:** https://youtu.be/Q9n2mLqXFpU
+6. [Figma Reference](https://www.youtube.com/watch?v=hbN9RGcQFNU)
+- **APIs**
+    
+    You can check the Usage of all the APIs in the Postman Collection [here](https://www.postman.com/interstellar-firefly-777826/workspace/money-matters/collection/28254623-dcd2cdfa-4af1-49f5-bd68-a7218aedc5e7?action=share&creator=28256022). 
+    
+    How to use Postman - https://www.youtube.com/watch?v=CLG0ha_a0q8&ab_channel=CodeBlessYou
+    
+    <aside>
+    ⛔ As these are Public APIs, the responses will contain transactions added by other users too
+    
+    </aside>
+    
+    **API Headers**
+    
+    - Admin User
+        
+        ```jsx
+        x-hasura-admin-secret: g08A3qQy00y8yFDq3y6N1ZQnhOPOa4msdie5EtKS1hFStar01JzPKrtKEzY
+        x-hasura-role: admin
+        ```
+        
+    - Non-Admin User
+        
+        ```jsx
+        x-hasura-role: user
+        // Fetch the user id by providing the login credentials to Get User Id API
+        x-hasura-user-id: <user_id>
+        ```
+        
+    
+    <aside>
+    ⛔ Ensure that the required headers are added to the API request object and role is provided as expected for the given user in the headers
+    
+    </aside>
+    
+
+### Description:
+
+You have to develop a Personal Transaction Management App. This role-based portal will handle a user's personal transaction record, and an Admin User should be able to view all the transactions recorded across the App
+
+1. **Login**
+    - **Admin User**
+        - Admin User should be able to log in using the below credentials
+            
+            **Email:** `admin@gmail.com` 
+            
+            **Password:** Admin@123
+            
+    - **Non-Admin User**
+        - The user should be able to Login Using the following credentials
+        - **Users**
+            
+            
+            | Email | Password | User Id |
+            | --- | --- | --- |
+            | jane.doe@gmail.com | janedoe@123 | 1 |
+            | samsmith@gmail.com | samsmith@123 | 2 |
+            | rahul@gmail.com | rahul@123 | 4 |
+            | teja@gmail.com | teja@123 | 5 |
+            | loki@gmail.com | loki@123 | 6 |
+            | ramesh@gmail.com | ramesh@123 | 7 |
+            | suresh@gmail.com | suresh@123 | 8 |
+            | prem@gmail.com | prem@123 | 9 |
+            | piyush@gmail.com | piyush@123 | 10 |
+            | isha@gmail.com | isha@123 | 12 |
+            | seema@gmail.com | seema@123 | 14 |
+            | seema@123 | arjun@123 | 15 |
+            | radha@gmail.com  | radha@123 | 16 |
+            | phani@gmail.com | phani@123 | 17 |
+    - **Validations**
+        - Email - The value provided should be in e-mail format
+        - Password - The password should be masked
+    
+    **Screen Link:** Design is left to your choice
+    
+    **API:** https://bursting-gelding-24.hasura.app/api/rest/get-user-id
+    
+2. **Sidebar**
+    - After Logging in to the application, the user should be able to see and navigate to all the pages available to him based on his role
+        
+        **Admin User:**
+        
+        - Dashboard
+        - All Transactions
+        - Profile
+        - Logout
+        
+        **Screen Link:** https://www.figma.com/file/U75zTaCvoQJUPT9FOaA3Dj/Money-Matters?type=design&node-id=1-1492&mode=dev
+        
+        **Non-Admin User:**
+        
+        - Dashboard
+        - Your Transactions
+        - Profile
+        - Logout
+        
+        **Screen Link:** https://www.figma.com/file/U75zTaCvoQJUPT9FOaA3Dj/Money-Matters?type=design&node-id=1-1492&mode=dev
+        
+3. **Dashboard**
+    - After Logging in to the application, the user should be navigated to this page by default
+    - **Admin User** should be able to view the following on the page
+        - **Total Credit** and **Total Debit** amounts of all the users
+        - **Recent three transactions** are done in the app (Sorted based on the transaction date)
+        - A **Bar Chart** showing the daily total credit and total debt of all the users in the last 7 days
+        
+        **Screen Link:** https://www.figma.com/file/U75zTaCvoQJUPT9FOaA3Dj/Money-Matters?type=design&node-id=1-1492&mode=dev
+        
+        - **Admin User Dashboard APIs:**
+            
+            **Get Total Credits And Total Debits** - https://bursting-gelding-24.hasura.app/api/rest/transaction-totals-admin
+            
+            **Recent 3 transactions:** https://bursting-gelding-24.hasura.app/api/rest/all-transactions (Paginate this api to get the recent 3 transactions)
+            
+            **Get Last 7 days Daily Credit And Debit -** https://bursting-gelding-24.hasura.app/api/rest/daywise-totals-last-7-days-admin
+            
+    - **Non-Admin Users** should be able to view the following on the page
+        - **Total Credit** and **Total Debit** amount of the user
+        - **Recent 3 transactions** done by the user (Sort based on the transaction date)
+        - A **Bar Chart** showing the daily total credit and total debit of the user in the last week
+        
+        **Screen Link:** https://www.figma.com/file/U75zTaCvoQJUPT9FOaA3Dj/Money-Matters?type=design&node-id=1-1492&mode=dev 
+        
+        - **Non-Admin User Dashboard APIs:**
+            
+            **Get Total Credits And Total Debits** - https://bursting-gelding-24.hasura.app/api/rest/credit-debit-totals
+            
+            **Recent 3 transactions:** https://bursting-gelding-24.hasura.app/api/rest/all-transactions (Paginate this API to get the recent 3 transactions)
+            
+            **Get the Last 7 days’ Daily Credit And Debit -** https://bursting-gelding-24.hasura.app/api/rest/daywise-totals-7-days
+            
+4. **Your Transactions - Non-Admin User Only**
+    - When the page is opened, the user should be able to see the following Tabs
+        - All Transactions - Displays the list of all the transactions done by the user
+        - Credit - Displays the list of **Credit** type of transactions done by the user
+        - Debit - Displays list of the **Debit** type of transactions done by the user
+    - The list of transactions should be an infinite scroll pagination list
+    - Each Transaction should consist of the following details
+        - Transaction Name
+        - Category
+        - Amount
+        - Date
+        - Option to Update or Delete the Transaction
+    - The user should be able to update a transaction by clicking on the Edit Button on the transaction
+    - **Screen Links:**
+        
+        **All Transactions:** https://www.figma.com/file/U75zTaCvoQJUPT9FOaA3Dj/Money-Matters?type=design&node-id=1-1492&mode=dev
+        
+        **Credit:** [https://www.figma.com/file/U75zTaCvoQJUPT9FOaA3Dj/Money-Matters? type=design&node-id=1-3892&mode=dev](https://www.figma.com/file/U75zTaCvoQJUPT9FOaA3Dj/Money-Matters?type=design&node-id=1-3892&mode=dev)
+        
+        **Debit:** https://www.figma.com/file/U75zTaCvoQJUPT9FOaA3Dj/Money-Matters?type=design&node-id=1-4034&mode=dev 
+        
+    
+    **API:** https://bursting-gelding-24.hasura.app/api/rest/all-transactions
+    
+5. **All Transactions - Admin User Only**
+    - When the page is opened, the user should be able to see the following Tabs
+        - All Transactions - Displays the list of all the transactions done by all the users
+        - Credit - Displays the list of **Credit** type of transactions done by all the users
+        - Debit - Displays list of the **Debit** type of transactions done by all the users
+    - The list of transactions should be an infinite scroll pagination list
+    - Each Transaction should consist of the following details
+        - User Name
+        - Transaction Name
+        - Category
+        - Amount
+        - Date
+    - **Screen Link:**
+        
+        **All Transactions:** https://www.figma.com/file/U75zTaCvoQJUPT9FOaA3Dj/Money-Matters?type=design&node-id=1-2545&mode=dev
+        
+        **Credit:** https://www.figma.com/file/U75zTaCvoQJUPT9FOaA3Dj/Money-Matters?type=design&node-id=1-3892&mode=dev
+        
+        **Debit:** https://www.figma.com/file/U75zTaCvoQJUPT9FOaA3Dj/Money-Matters?type=design&node-id=1-4034&mode=dev
+        
+    
+    **API:** https://bursting-gelding-24.hasura.app/api/rest/all-transactions
+    
+6. **Add Transaction**
+    - Only Non-Admin users should be able to view the **Add Transaction** button in the header
+    - When the user clicks on **Add Transaction** a pop-up should be shown to enter the following details
+        - Transaction Name- Input type **Text**
+        - Transaction Type - Input type **Select** with options Credit, Debit
+        - Transaction Category - Input type **Select** with options Entertainment, Food, Shopping, etc…
+        - Amount - Input type Number
+        - Date - Input type Date
+        - **Validations**
+            - All the above-mentioned fields are required(*)
+            - **Transaction Name -** This field should have a maximum of 30 characters
+            - **Amount -** Should only accept numeric values and the value should always be greater than zero
+    - Once the user has added a transaction successfully show a toast saying the same
+    - The newly added transaction should be displayed in the list of transactions
+    - Newly updated total amounts should be displayed in the **Dashboard**
+    
+    **Screen Link:** https://www.figma.com/file/U75zTaCvoQJUPT9FOaA3Dj/Money-Matters?type=design&node-id=1-1492&mode=dev
+    
+    **API:** https://bursting-gelding-24.hasura.app/api/rest/add-transaction
+    
+7. **Update Transaction**
+    - Only Non-Admin users should be able to update an existing transaction, by clicking on the edit icon on any existing transaction
+    - When the user clicks on **Edit Icon** a pop-up should be shown to enter the following details
+        - Transaction Name- Input type **Text**
+        - Transaction Type - Input type **Select** with options Credit, Debit
+        - Transaction Category - Input type **Select** with options Entertainment, Food, Shopping, etc…
+        - Amount - Input type Number
+        - Date - Input type Date
+        - **Validations**
+            - All the above-mentioned fields are required(*)
+            - **Transaction Name -** This field should have a maximum of 30 characters
+            - **Amount -** Should only accept numeric values and the value should always be greater than zero
+    - Once the user has updated a transaction successfully show a toast saying the same
+    - The updated transaction details should be reflected in the list of transactions
+    - Newly updated total amounts should be displayed in the **Dashboard**
+    
+    **Screen Link:** https://www.figma.com/file/U75zTaCvoQJUPT9FOaA3Dj/Money-Matters?type=design&node-id=1-3602&mode=dev
+    
+    **API:** https://bursting-gelding-24.hasura.app/api/rest/update-transaction
+    
+8. **Delete Transaction**
+    - Only Non-Admin users should be able to delete an existing transaction, by clicking on the delete icon on any existing transaction
+    - When the user clicks on the **Delete** Icon show a confirmation pop-up for the action
+    - Once the user has updated a transaction successfully show a toast saying the same
+    - Newly updated total amounts should be displayed in the **Dashboard**
+    
+    **Screen Link:** https://www.figma.com/file/U75zTaCvoQJUPT9FOaA3Dj/Money-Matters?type=design&node-id=1-2759&mode=dev
+    
+    **API:** https://bursting-gelding-24.hasura.app/api/rest/delete-transaction
+    
+9. **Profile**
+    - When the user opens the profile page, the user should be able to view the following details
+        - Profile Icon
+        - Name
+        - Username
+        - Email
+        - Date Of Birth
+    
+    **Screen Link:** https://www.figma.com/file/U75zTaCvoQJUPT9FOaA3Dj/Money-Matters?type=design&node-id=1-2162&mode=dev
+    
+    **API:** https://bursting-gelding-24.hasura.app/api/rest/profile
+    
+10. **Logout**
+    - When the user clicks logout, show a confirmation pop-up for the action
+    - Once the user logs out of the application, the user should not be able to access any of the authenticated pages
+    
+    **Screen Link:** https://www.figma.com/file/U75zTaCvoQJUPT9FOaA3Dj/Money-Matters?type=design&node-id=1-3038&mode=dev
